@@ -1,6 +1,6 @@
 # docker-compose-wordpress
 
-> Based on: https://github.com/aschmelyun/docker-compose-wordpress
+> Based on: [https://github.com/aschmelyun/docker-compose-wordpress](https://github.com/aschmelyun/docker-compose-wordpress)
 
 A simplified yet refined Docker Compose workflow that sets up a LEMP network of containers for local WordPress development. If you'd like more interactive info, there's a [video tutorial](https://www.youtube.com/watch?v=kIqWxjDj4IU) that walk you through setup and usage of this environment.
 
@@ -29,7 +29,7 @@ By default, whenever you bring down the Docker network, your MySQL data will be 
 1. Create a `mysql` folder in the project root, alongside the `nginx` and `src` folders.
 2. Under the mysql service in your `docker-compose.yml` file, add the following lines:
 
-```
+```Dockerfile
 volumes:
   - ./mysql:/var/lib/mysql
 ```
