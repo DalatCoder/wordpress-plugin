@@ -63,3 +63,15 @@ services:
       - ./wordpress:/var/www/html:delegated
     networks:
       - wordpress
+
+  phpcli:
+    build:
+      context: .
+      dockerfile: wpcli.dockerfile
+    container_name: phpcli
+    volumes: 
+      - ./wordpress:/var/www/html:delegated
+    depends_on: 
+      - mysql
+    networks: 
+      - wordpress
