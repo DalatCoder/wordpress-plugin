@@ -119,3 +119,19 @@ class NTHFixWordPress
 
 $nthFixWordPress = new NTHFixWordPress();
 ```
+
+### 1.5. Inserting `post` and `page` programmatically
+
+```php
+$args = [
+  'post_title' => 'Sample post',
+  'post_content' => 'This is the content',
+  'post_status' => 'publish',
+  'post_type' => 'post' // 'post' || 'page'
+];
+
+$postId = wp_insert_post($args);
+
+echo $postId;
+
+```
