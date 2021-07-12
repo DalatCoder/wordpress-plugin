@@ -135,3 +135,13 @@ $postId = wp_insert_post($args);
 echo $postId;
 
 ```
+
+### 1.6. Expanding the user profile page with additional section and field
+
+```php
+  add_action('show_user_profile', [$this, 'showExtraProfileFields']);
+  # add_action('edit_user_profile', [$this, 'showExtraProfileFields']);
+
+  add_action('personal_options_update', [$this, 'saveExtraProfileFields']);
+  # add_action('edit_user_profile_update', [$this, 'saveExtraProfileFields']);
+```
