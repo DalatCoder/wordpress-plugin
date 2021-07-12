@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  wordpress:
+    driver: bridge
+
+services:
+  site:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./wordpress:/var/www/html:delegated
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - wordpress
+
+  mysql:
+    image: mysql:5.7.29
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - wordpress
+
+  php:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    container_name: php
+    volumes:
+      - ./wordpress:/var/www/html:delegated
+    networks:
+      - wordpress
