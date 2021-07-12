@@ -145,3 +145,19 @@ echo $postId;
   add_action('personal_options_update', [$this, 'saveExtraProfileFields']);
   # add_action('edit_user_profile_update', [$this, 'saveExtraProfileFields']);
 ```
+
+### 1.7. Extracting WordPress setting from Themes and Plugins with `bloginfo`
+
+- `bloginfo(name)`: Get `Site Title` field in Admin Setting Page
+- `bloginfo(description)`: Get `Tagline` field in Admin Setting Page
+- `bloginfo(template_url)`: Get path to template folder
+
+  ```php
+    <header>
+      <link rel="stylesheet" type="text/css" href="<?= bloginfo(template_url) ?>/css/style.css">
+    </header>
+  ```
+
+- `bloginfo(wpurl)`: Get URL to the home page
+- `bloginfo(version)`: Get version
+- `bloginfo(language)`: Get language
