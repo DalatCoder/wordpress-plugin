@@ -36,7 +36,7 @@ services:
     networks:
       - wordpress
     volumes: 
-      ./mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
 
   php:
     build:
