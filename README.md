@@ -92,3 +92,30 @@ Action hooks:
 - `widgets_init`
 - `customize_register`
 - `after_setup_theme`
+
+### 1.4. Example: plugin to change `Wordpress` to `WordPress`
+
+```php
+/*
+ * Plugin Name: Fix WordPress
+ * Description: Change the spelling of WordPress to capital P
+ * Version: 1.0
+ * Author: 2nth
+ */
+
+class NTHFixWordPress
+{
+  function __construct()
+  {
+    add_filter('the_content', [$this, 'fixSpelling']);
+  }
+
+  function fixSpelling($content)
+  {
+    $content = str_replace('Wordpress', 'WordPress', $content);
+    return $content;
+  }
+}
+
+$nthFixWordPress = new NTHFixWordPress();
+```
