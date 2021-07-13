@@ -231,3 +231,32 @@ class NTHChangingFooterText
     }
 }
 ```
+
+### 2.4. Programmatically activate plugins without having to click the activate link
+
+Put that code in `functions.php` in current actived theme folder
+
+Auto active plugin without logging to WordPress Admin in Production environment.
+
+```php
+function run_activate_plugin($plugin)
+{
+  $current = get_option('active_plugins');
+  $plugin = plugin_basename(trim($plugin));
+
+  if (!in_array($plugin, $current)) {
+    $current[] = $plugin;
+
+    sort($current);
+
+    do_action('activate_plugin', trim($plugin));
+    update_option('activate_plugins', $current);
+    do_action('activate_' . trim($plugin));
+    do_action('activated_plugin', trim($plugin));
+  }
+
+  return null;
+}
+
+# run_activate_plugin('foldername/plugin.php');
+```
