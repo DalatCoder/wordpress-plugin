@@ -260,3 +260,27 @@ function run_activate_plugin($plugin)
 
 # run_activate_plugin('foldername/plugin.php');
 ```
+
+### 2.5. Adding messages to writers at the end of any post editing form
+
+```php
+class NTNAppendPostEditingUI
+{
+  function __construct()
+  {
+    add_action('edit_form_advanced', [$this, 'renderHTML']);
+  }
+
+  function renderHTML()
+  {
+    echo "
+      <div style='background: #fff; margin-bottom: 25px; padding: 10px 20px; border: none; border-radius: 10px; box-shadow: 0px 5px 10px rgba(0,0,0,.4);'>
+        <h3>Render Extra Information</h3>
+      </div>
+    ";
+  }
+}
+
+$instance = new NTNAppendPostEditingUI();
+
+```
