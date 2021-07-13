@@ -214,3 +214,20 @@ class MyOwnCustomDashboardWidget
     }
 }
 ```
+
+### 2.3. Programatically changing the footer text in the administrative backend
+
+```php
+class NTHChangingFooterText
+{
+    function __construct()
+    {
+        add_action('admin_footer_text', [$this, 'changeFooter']);
+    }
+
+    function changeFooter()
+    {
+        echo "Changing Footer Content";
+    }
+}
+```
