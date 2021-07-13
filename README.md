@@ -171,3 +171,21 @@ echo $postId;
 ```php
   add_action('wp_login', [$this, 'createUserLogEntry'], 10, 2);
 ```
+
+## 2. Plugins Allow Developers To Take Control of WordPress Adminnistrative Back End
+
+Take control of WordPress backend
+
+### 1. Plugin #1: Display a message to all writers in the WordPress backend
+
+Create plugin to show an information box on `create-post` page
+
+```php
+  add_action('all_admin_notices', [$this, 'displayMessageAtTop']);
+
+  function displayMessageAtTop() {
+    if (strpos($_SERVER['REQUEST_URI'], 'post-new') > 0 || strpos($_SERVER['REQUEST_URI'], 'post.php') > 0) {
+      // HTML in here
+    }
+  }
+```
