@@ -176,7 +176,7 @@ echo $postId;
 
 Take control of WordPress backend
 
-### 1. Plugin #1: Display a message to all writers in the WordPress backend
+### 2.1. Plugin #1: Display a message to all writers in the WordPress backend
 
 Create plugin to show an information box on `create-post` page
 
@@ -188,4 +188,29 @@ Create plugin to show an information box on `create-post` page
       // HTML in here
     }
   }
+```
+
+### 2.2. Create your own custom WordPress Widgets with PHP
+
+```php
+class MyOwnCustomDashboardWidget
+{
+    function __construct()
+    {
+        add_action('wp_dashboard_setup', [$this, 'addCustomWidget']);
+    }
+
+    function addCustomWidget()
+    {
+        wp_add_dashboard_widget('custom_help_widget', 'Good Morning', [$this, 'generateHTML']);
+    }
+
+    function generateHTML()
+    {
+        $currentUser = wp_get_current_user();
+        echo 'Hello ' . $currentUser->user_nicename . '. Today is ' . date('d/m/Y');
+
+        // HTML in here!
+    }
+}
 ```
