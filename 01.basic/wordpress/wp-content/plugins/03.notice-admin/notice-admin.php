@@ -7,8 +7,6 @@
  * Author: 2nth
  */
 
-require __DIR__ . '/functions.php';
-
 class NoticeAdmin
 {
     function __construct()
