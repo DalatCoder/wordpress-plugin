@@ -161,3 +161,13 @@ echo $postId;
 - `bloginfo(wpurl)`: Get URL to the home page
 - `bloginfo(version)`: Get version
 - `bloginfo(language)`: Get language
+
+### 1.8 Log User When Login to WordPress Admin
+
+```php
+  add_action('admin_notices', [$this, 'showNotice']);
+```
+
+```php
+  add_action('wp_login', [$this, 'createUserLogEntry'], 10, 2);
+```
