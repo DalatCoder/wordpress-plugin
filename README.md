@@ -435,3 +435,39 @@ class NTHMyAmazingWidget extends WP_Widget
 }
 
 ```
+
+### 3.5. Introduction to Theme Customization API
+
+Open Admin Dashboard, click Appearance and Customize
+
+```php
+add_action('customize_register', 'theme_customizer_register');
+
+function theme_customizer_register($wp_customize)
+{
+  $wp_customize->add_section('social_media', [
+    'title' => 'Social Media',
+    'priority' => 25,
+  ]);
+
+  $wp_customize->add_setting('facebook', [
+    'default' => 'https://facebook.com',
+    'transport' => 'refresh' // When user enter value, submit and refresh to see new update
+  ]);
+
+  $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'txtFacebookLink', [
+        'label' => 'Facebook Link',
+        'section' => 'social_media',
+        'settings' => 'facebook',
+        'type' => 'text'
+      ]
+    )
+  );
+}
+```
+
+Flows
+
+- Create sections
+- Create settings
+- Create controls
