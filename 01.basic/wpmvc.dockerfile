@@ -32,5 +32,3 @@ RUN apt -y install zip
 USER wp
 
 WORKDIR /var/www/html/wp-content/plugins
-
-ENTRYPOINT [ "echo", "WordPress MVC Container Started" ]
