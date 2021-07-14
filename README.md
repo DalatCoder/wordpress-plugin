@@ -284,3 +284,18 @@ class NTNAppendPostEditingUI
 $instance = new NTNAppendPostEditingUI();
 
 ```
+
+## 3. WordPress API Programming Commonly Used in Plugin
+
+### 3.1. Introduction to the WordPress Option API
+
+- `add_option(<field_name>, <field_value>)`: Option don't have `autoload`, we need
+  to `manual` call
+
+- `update_option(<field_name>, <field_value>)`: Almost does the samething as
+  `add_option`
+
+  - Update an existing option
+  - If the `option` does exist, it create automatically
+
+- `get_option(<field_name>)`: Get option value by `key`
