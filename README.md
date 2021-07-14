@@ -299,3 +299,47 @@ $instance = new NTNAppendPostEditingUI();
   - If the `option` does exist, it create automatically
 
 - `get_option(<field_name>)`: Get option value by `key`
+
+### 3.2. WordPress Transient API For WordPress Websites and WordPress Multisites
+
+Module agenda
+
+- WordPress Transient API
+- How to use it to persist data
+
+WordPress Transient API
+
+- Similiar to cookie, but
+  - Cookies can be cleared by a web browser
+  - Transient stored in WordPress, so it can't be cleared by client
+
+`set_transient()` using `wp_cache_set()` and `mysql` database.
+WP Cache API using `$GLOBAL`(global session for application).
+`Cookies` and `Session` saves data only for one current user(cookies in browser, sessions on backend).
+I think better using `set_transient()`, it has nice hooks and save all data global, even on site disabled cache.
+
+Answer at: [WordPress Stackexchange](https://wordpress.stackexchange.com/questions/250751/wp-transients-wp-object-cache-vs-sessions-cookies)
+
+```php
+  $transient_id = 'endOfMonthMessage';
+  $message = '<p>At the end of the month, you need to review your subscription</p>';
+  $expiry = 60 * 60 * 24 * 5; // 5 days
+
+  set_transient($transient_id, $message, $expiry); // Expired after $expiry time
+
+  // or nerver expired: set_transient($transient_id, $message, $expiry);
+
+  echo get_transient($transient_id);
+
+  delete_transient($transient_id);
+```
+
+- `set_transient`: Set new transient
+- `get_transient`: Get transient value by the given key
+- `delete_transient`: Delete transient with the given key
+
+For multisites transient
+
+- `set_site_transient()`
+- `delete_site_transient()`
+- `get_site_transient()`
