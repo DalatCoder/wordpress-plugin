@@ -76,3 +76,15 @@ services:
       - mysql
     networks:
       - wordpress
+
+  phpmvc:
+    build:
+      context: .
+      dockerfile: wpmvc.dockerfile
+    container_name: phpmvc
+    volumes:
+      - ./wordpress:/var/www/html:delegated
+    depends_on:
+      - mysql
+    networks:
+      - wordpress
