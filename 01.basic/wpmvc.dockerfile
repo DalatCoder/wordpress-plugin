@@ -1,5 +1,6 @@
 FROM php:7.4-fpm
 
+USER root
 RUN addgroup --gid 1000 wp
 RUN adduser --shell /bin/sh --uid 1000 --gid 1000 --disabled-password wp
 RUN usermod -a -G wp wp
@@ -14,7 +15,6 @@ WORKDIR /var/www/html
 # replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-USER root
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash 
 RUN apt -y install nodejs
 USER wp
@@ -28,7 +28,9 @@ USER root
 RUN mv composer.phar /usr/local/bin/composer
 
 RUN apt -y install git
+RUN apt -y install zip
 USER wp
 
-
 WORKDIR /var/www/html/wp-content/plugins
+
+ENTRYPOINT [ "echo", "WordPress MVC Container Started" ]
