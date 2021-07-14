@@ -75,5 +75,7 @@ class NTHHideMenuItem
                 remove_menu_page($page);
             }
         }
+
+        // Test emoji
     }
 }
