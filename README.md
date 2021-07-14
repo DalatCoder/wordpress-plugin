@@ -299,6 +299,7 @@ $instance = new NTNAppendPostEditingUI();
   - If the `option` does exist, it create automatically
 
 - `get_option(<field_name>)`: Get option value by `key`
+- `delete_option(<field_name>)`: Delete an option
 
 ### 3.2. WordPress Transient API For WordPress Websites and WordPress Multisites
 
