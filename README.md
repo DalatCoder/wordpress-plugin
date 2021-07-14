@@ -301,6 +301,13 @@ $instance = new NTNAppendPostEditingUI();
 - `get_option(<field_name>)`: Get option value by `key`
 - `delete_option(<field_name>)`: Delete an option
 
+Multisites option API
+
+- `add_site_option`
+- `update_site_option`
+- `get_site_option`
+- `delete_site_option`
+
 ### 3.2. WordPress Transient API For WordPress Websites and WordPress Multisites
 
 Module agenda
@@ -344,3 +351,35 @@ For multisites transient
 - `set_site_transient()`
 - `delete_site_transient()`
 - `get_site_transient()`
+
+### 3.3. Introduction to Metadata API
+
+> Powerfull and easy to use API in WordPress
+
+Get metadata for everything:
+
+- `post`
+- `user`
+- `comment`
+
+WordPress comes with 3 metadata tables
+
+- `commentmeta`
+- `postmeta`
+- `usermeta`
+
+```php
+  $metadata_type = 'user';
+  $object_id = 1; // In current case, this is the user id
+  $meta_key = 'first_name';
+  $is_array_format = false;
+
+  $firstname = get_metadata($metadata_type, $object_id, $meta_key, $get_single);
+```
+
+Metadata API
+
+- `get_metadata`
+- `update_metadata`
+- `add_metadata`
+- `delete_metadata`
