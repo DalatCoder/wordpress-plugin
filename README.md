@@ -751,3 +751,25 @@ add_filter('the_content', function ($content) {
 ```
 
 This plugin will replace `paypal_(1)` in any post with the HTML got from `generateHTML()`
+
+## 9. Plugin | Shortcode Text Snippet Library
+
+Shortcode usually a code like this: `[cmi-user-link]`. And what it does
+is it pulls up other `PHP` that `renders` HTML or Javascript. And you tells
+WordPress this is the shortcode by surrouding it with square brackets.
+
+`add_shortcode('<name>', <callback>)`
+
+```php
+// Plugin metadata
+
+add_shortcode('nth-hello', function () {
+  return "Hello Nguyen Trong Hieu";
+});
+
+add_shortcode('nth-goodbye', function () {
+  return "Goodbye";
+});
+```
+
+Create new post, in its content, add the following `['nth-hello']`
