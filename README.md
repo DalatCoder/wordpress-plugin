@@ -650,3 +650,51 @@ add_filter('the_content', function ($content) {
   return '<div style="width: 100%; text-align: center;">' . $feature_image . '</div>' . $content;
 });
 ```
+
+Another hook
+
+```php
+add_action('after_theme_setup', function () {
+
+});
+```
+
+Adding our custom thumbnail size to the WordPress media manager
+
+Insert new post, choose `add media`, we will add new option to `Size` combobox
+
+```php
+add_image_size('square_175x175', 175, 175, ['top', 'left']);
+add_image_size('square_100x100', 100, 100, ['bottom', 'right']);
+add_image_size('square_40x40', 40, 40);
+
+add_filter('image_size_names_choose', function ($sizes) {
+  return array_merge($sizes, [
+    'square_175x175' => __('Square 175'),
+    'square_100x100' => __('Square 100x100'),
+    'square_40x40' => __('Icon 40x40'),
+  ]);
+});
+```
+
+Getting the Thumbnail link from the post id
+
+```php
+$args = [
+  'posts_per_page' => 5,
+  'orderBy' => 'post_date',
+  'order' => 'DESC'
+];
+
+$query = new WP_Query($args);
+
+if ($query->have_posts()) :
+  while($query->have_posts()) :
+    $query->the_post();
+    $title = get_the_title();
+    $post_date = get_the_date();
+    $url = get_permalink();
+    $thumbnail = get_the_post_thumbnail($the_post->ID, 'square_40x40');
+    $thumbnail_id = get_post_thumbnail_id($the_post->ID);
+    $thumbnail_url = get_attachment_link($thumbnail_id);
+```
