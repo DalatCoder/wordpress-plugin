@@ -519,3 +519,24 @@ function show_date_and_time($attributes)
 // Override default color attribute
 <?php echo "The date/time is " . do_shortcode('[date-and-time] color="#0F0"'); ?>
 ```
+
+## 4. Hooks | The most important tool in Your WordPress Plugin Development Toolbox
+
+Hooks are basically a way of writing extensions.
+
+Extensions are themes and plugins.
+
+When you want to make changes to WordPress, we can not touch the WordPress core.
+Because when we update we're going to lose all of our changes.
+
+So hooks work with extensions and extensions actually live outside of the
+WordPress core installation.
+
+In this module, we will discuss 2 type of hooks: `action` hooks and `filter` hooks.
+
+- `action` hook: It does something to the WordPress core installation without us
+  modifying the WordPress core files.
+
+- `filter` hook: It will change the WordPress information that you see on the
+  web page in some way. Such as I use the `the_content` and change that content
+  any way I want.
