@@ -553,3 +553,16 @@ function add_author_information($content) {
   return $content;
 }
 ```
+
+### 4.2. Filter hook adding CSS classes to the HTML body tag
+
+```php
+add_filter('body_class', 'customize_body_class');
+
+function customize_body_class($classes) {
+  array_unshift($classes, 'my-new-class-name');
+  return $classes;
+
+  // $classes[] = 'my-new-class-name' || array_push($classes, 'my-new-class-name')
+}
+```
