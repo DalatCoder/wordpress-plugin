@@ -566,3 +566,19 @@ function customize_body_class($classes) {
   // $classes[] = 'my-new-class-name' || array_push($classes, 'my-new-class-name')
 }
 ```
+
+### 4.3. Detect client device
+
+- `init`: It was called after the entire WordPress core has started and has
+  actually loaded
+
+  - Load the global `$wpdb`
+  - Load and/or register custom post types
+  - Create menu
+  - Load another hooks if needed
+
+- `admin_init`: It was called after the backend has actually loaded
+
+  - Process admin info
+  - Display messages to the admin users
+  - Display the top black bar
