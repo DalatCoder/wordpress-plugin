@@ -605,3 +605,48 @@ add_action('wp_head', function () {
   <?php
 });
 ```
+
+## 5. Developing WordPress Plugin
+
+A plugin is just a PHP file
+
+Flow
+
+- Start any PHP file
+- Save the PHP file in the `wp-content/plugins` directory
+- Add plugin metadata
+  - Plugin Name
+  - Plugin URI
+  - Description (optional)
+  - Version (numerical)
+  - Author
+  - Author URI
+- Write hook
+- Write callback function
+
+### 5.1. Plugin to display `hello-world` after every page and post
+
+```php
+// Plugin metadata
+
+add_filter('the_content', function ($content) {
+  return $content . '<p>Hello World</p>';
+});
+```
+
+### 5.2. Plugin to display feature image centered
+
+```php
+add_filter('the_content', function ($content) {
+  $id = get_the_ID();
+  $title = get_the_title();
+
+  $feature_image = get_the_post_thumbnail($id, [512, 512], [
+    'alt' => $title,
+    'id' => 'featured-image',
+    'class' => 'featured-image'
+  ]);
+
+  return '<div style="width: 100%; text-align: center;">' . $feature_image . '</div>' . $content;
+});
+```
