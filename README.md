@@ -540,3 +540,16 @@ In this module, we will discuss 2 type of hooks: `action` hooks and `filter` hoo
 - `filter` hook: It will change the WordPress information that you see on the
   web page in some way. Such as I use the `the_content` and change that content
   any way I want.
+
+### 4.1. Write Plugin to automatically add author information at bottom of every post page
+
+```php
+add_filter('the_content', 'add_author_information');
+
+function add_author_information($content) {
+  $content .= '<hr>';
+  $content .= 'Visit the author\'s website at: https://authorwebsite.com';
+
+  return $content;
+}
+```
