@@ -721,3 +721,22 @@ add_action('admin_notices', function () {
   }
 });
 ```
+
+## 7. Plugin | Login Protect
+
+Protect `/wordpress/wp-login.php` with addtional information on Request URI
+
+```php
+add_action('login_form_login', function () {
+  if ($_SERVER['SCRIPT_NAME'] === '/wordpress/wp-login.php') {
+    if (isset($_GET['nth'])) {
+      $current_hour = Date('H');
+      if ($_GET['ntn'] == $current_hour) {
+        return;
+      }
+    }
+  }
+
+  return header('Location: /');
+});
+```
