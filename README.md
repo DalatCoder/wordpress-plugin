@@ -698,3 +698,26 @@ if ($query->have_posts()) :
     $thumbnail_id = get_post_thumbnail_id($the_post->ID);
     $thumbnail_url = get_attachment_link($thumbnail_id);
 ```
+
+## 6. Plugin | User greeting sending messages to specific user
+
+```php
+// Plugin metadata
+
+add_action('admin_notices', function () {
+  global $current_user;
+  get_currentuserinfo();
+
+  $preferred_users = [
+    'admin',
+    'user',
+  ];
+
+  $login_username = $current_user->user_login;
+  $user_email = $current_user->user_email;
+
+  if (in_array($login_username, $preferred_users)) {
+    echo 'Hello user ' . $login_username;
+  }
+});
+```
