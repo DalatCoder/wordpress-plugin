@@ -471,3 +471,51 @@ Flows
 - Create sections
 - Create settings
 - Create controls
+
+### 3.6 Shortcode API
+
+> As a security precaution, running PHP inside WordPress content is forbidden;
+> to allow dynamic interactions with the content, Shortcodes were presented in WordPress version 2.5.
+> Shortcodes are macros that can be used to perform dynamic interactions with the content.
+> i.e creating a gallery from images attached to the post or rendering a video.
+
+Learn more at: [WordPress Plugin](https://developer.wordpress.org/plugins/shortcodes/)
+
+Shortcode can be added to both Plugin and Theme
+
+Example: Add shortcode to display Date and Time in every post
+
+```php
+add_shortcode('date-and-time', 'show_date_and_time');
+
+function show_date_and_time()
+{
+  return date('d/m/Y H:i:s');
+}
+```
+
+In `index.php` of specific theme
+
+```php
+<?php echo "The date/time is " . do_shortcode('[date-and-time]'); ?>
+```
+
+Working with Shortcode API Attributes
+
+```php
+add_shortcode('date-and-time', 'show_date_and_time');
+
+function show_date_and_time($attributes)
+{
+  $a = shortcode_attr([
+    'color' => '#FF0000',
+  ], $attributes);
+
+  $color = $a['color'];
+
+  return '<span style="color: ' . $color . '">' . date('d/m/Y H:i:s') . '</span>';
+}
+
+// Override default color attribute
+<?php echo "The date/time is " . do_shortcode('[date-and-time] color="#0F0"'); ?>
+```
