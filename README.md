@@ -740,3 +740,14 @@ add_action('login_form_login', function () {
   return header('Location: /');
 });
 ```
+
+## 8. Plugin | Generate HTML on fly using `the_content` hook
+
+```php
+add_filter('the_content', function ($content) {
+  $content = ereg_replace('paypal_([A-Z0-9]+)', generateHTML());
+  return $content;
+});
+```
+
+This plugin will replace `paypal_(1)` in any post with the HTML got from `generateHTML()`
