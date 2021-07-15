@@ -773,3 +773,7 @@ add_shortcode('nth-goodbye', function () {
 ```
 
 Create new post, in its content, add the following `['nth-hello']`
+
+## 10. Plugin | Media File Unzipper
+
+`manage_options`: Capability, only the admin members or admin administrators to have access.
