@@ -567,7 +567,7 @@ function customize_body_class($classes) {
 }
 ```
 
-### 4.3. Detect client device
+### 4.3. `init` and `admin_init` hooks
 
 - `init`: It was called after the entire WordPress core has started and has
   actually loaded
@@ -582,3 +582,26 @@ function customize_body_class($classes) {
   - Process admin info
   - Display messages to the admin users
   - Display the top black bar
+
+### 4.4. Using hooks to add a Facebook share button to any post or page
+
+```php
+add_filter('the_content', function ($content) {
+
+  $content .= 'Facebook share plugin goes here';
+
+  return $content;
+});
+```
+
+Put `wp-head()` inside `header.php` file in theme folder
+
+```php
+add_action('wp_head', function () {
+  ?>
+
+  // Inject Facebook share button scripts
+
+  <?php
+});
+```
