@@ -88,19 +88,39 @@ class NTHTabInstruction
 
         echo '
             <h2 class="nav-tab-wrapper">
-                <a href="' . get_admin_url() . 'admin.php?page=nth-instructions&tab=1" id="tab-page1" class="' . $tab_active_page1 . ' sec-file-tab nav-tab">Tab 1</a>
-                <a href="' . get_admin_url() . 'admin.php?page=nth-instructions&tab=2" id="tab-page2" class="' . $tab_active_page2 . ' sec-file-tab nav-tab">Tab 2</a>
-                <a href="' . get_admin_url() . 'admin.php?page=nth-instructions&tab=3" id="tab-page3" class="' . $tab_active_page3 . ' sec-file-tab nav-tab">Tab 3</a>
-                <a href="' . get_admin_url() . 'admin.php?page=nth-instructions&tab=4" id="tab-page4" class="' . $tab_active_page4 . ' sec-file-tab nav-tab">Tab 4</a>
+                <a href="' . $this->generateTablink(1) . '" id="tab-page1" class="' . $tab_active_page1 . ' sec-file-tab nav-tab">Blogs</a>
+                <a href="' . $this->generateTablink(2) . '" id="tab-page2" class="' . $tab_active_page2 . ' sec-file-tab nav-tab">Tab 2</a>
+                <a href="' . $this->generateTablink(3) . '" id="tab-page3" class="' . $tab_active_page3 . ' sec-file-tab nav-tab">Tab 3</a>
+                <a href="' . $this->generateTablink(4) . '" id="tab-page4" class="' . $tab_active_page4 . ' sec-file-tab nav-tab">Tab 4</a>
             </h2>
         ';
 
-        echo "
-            <div class='tab-section' style='display: $show_tab_page1' id='page1'>
-                <h2>Page 1</h2>
-                <p>Content pending</p>
-            </div>
-        ";
+        if ($show_tab_page1 === 'block') {
+            echo "
+                <div class='tab-section' style='display: $show_tab_page1' id='page1'>
+                    <h2>All posts</h2>
+                </div>
+            ";
+
+            $query = new WP_Query([
+                'post_type' => 'post',
+            ]);
+
+            if ($query->have_posts()) {
+                echo '<ul>';
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    $plink = get_permalink();
+                    echo '<li><a target="_blank" href="' . $plink . '">' . get_the_title() . '</a>' . '</li>';
+                }
+                echo '</ul>';
+
+                wp_reset_postdata();
+            } else {
+                echo '<p>No posts found.</p>';
+            }
+        }
+
         echo "
             <div class='tab-section' style='display: $show_tab_page2' id='page1'>
                 <h2>Page 2</h2>
@@ -119,6 +139,11 @@ class NTHTabInstruction
                 <p>Content pending</p>
             </div>
         ";
+    }
+
+    function generateTablink($tabId)
+    {
+        return  get_admin_url() . 'admin.php?page=nth-instructions&tab=' . $tabId;
     }
 }
 
