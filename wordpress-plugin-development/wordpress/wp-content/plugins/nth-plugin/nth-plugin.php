@@ -18,6 +18,10 @@
 
 defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
 
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
+}
+
 if (!class_exists('NTHPlugin')) {
     class NTHPlugin
     {
@@ -40,7 +44,7 @@ if (!class_exists('NTHPlugin')) {
         function settings_link($links)
         {
             $settings_link = '<a href="admin.php?page=nth_plugin">Settings</a>';
-            $links[] = $settings_link;
+            array_push($links, $settings_link);
             return $links;
         }
 
