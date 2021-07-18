@@ -56,3 +56,26 @@
   ```php
     defined('ABSPATH') or die('Hey, you can\'t access this file, you silly human!');
   ```
+
+- WordPress automatically trigger 3 default action for a plugin
+
+  - `activation`
+
+    - Create custom post type
+    - Flush rewrite rules
+
+    ```php
+      register_activation_hook(__FILE__, array($instance, 'activate'));
+    ```
+
+  - `deactivation`
+
+    - Flush rewrite rules
+
+    ```php
+      register_deactivation_hook(__FILE__, array($instance, 'deactivate'));
+    ```
+
+  - `uninstall`
+    - Delete custom post type
+    - Delete all plugin data from DB
