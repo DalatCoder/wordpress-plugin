@@ -29,6 +29,20 @@ if (!class_exists('NTHPlugin')) {
         function register_admin_scripts()
         {
             add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+
+            add_action('admin_menu', array($this, 'add_admin_pages'));
+        }
+
+        function add_admin_pages()
+        {
+            add_menu_page('NTH Plugin', 'NTH Plugin', 'manage_options', 'nth_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
+        }
+
+        function admin_index()
+        {
+            // Require template
+
+            require_once plugin_dir_path(__FILE__) . 'template/admin.php';
         }
 
         function register_client_scripts()
