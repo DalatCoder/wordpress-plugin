@@ -14,3 +14,7 @@
  * License: GPLv2 or later
  * Text Domain: nth-plugin
  */
+
+if (!defined('ABSPATH')) {
+    die;
+}

@@ -29,11 +29,30 @@
     */
   ```
 
-- For security, create new file `index.php` with the following content
+- For security
 
-```php
-  <?php
-  // Silence is golden.
-```
+  - Create new file `index.php` with the following content
 
-When someone try to directly access to the plugin folder, they will be redirected to the `index.php`.
+  ```php
+    <?php
+    // Silence is golden.
+  ```
+
+  When someone try to directly access to the plugin folder, they will be redirected to the `index.php`.
+
+  - Check condition in main plugin file
+
+  ```php
+    if (!defined('ABSPATH')) {
+        die;
+    }
+  ```
+
+  'ABSPATH` will be defined by WordPress, if someone try to access our website
+  from another source, this constant won't be defined.
+
+  or
+
+  ```php
+    defined('ABSPATH') or die('Hey, you can\'t access this file, you silly human!');
+  ```
