@@ -18,6 +18,11 @@
 
 defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
 
+if (class_exists('NTHPlugin')) {
+    error_log('Class NTHPlugin have already defined');
+    exit;
+}
+
 class NTHPlugin
 {
     function __construct()
@@ -65,10 +70,8 @@ class NTHPlugin
     }
 }
 
-if (class_exists('NTHPlugin')) {
-    $instance = new NTHPlugin();
-    $instance->register_admin_scripts();
-}
+$instance = new NTHPlugin();
+$instance->register_admin_scripts();
 
 // activate | the same as add_action('<action>', 'function');
 register_activation_hook(__FILE__, array($instance, 'activate'));
