@@ -20,11 +20,18 @@ defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
 
 class NTHPlugin
 {
+    function __construct()
+    {
+        add_action('init', array($this, 'custom_post_type'));
+    }
 
     function activate()
     {
         // Generated a custom post type
+        $this->custom_post_type();
+
         // Flush rewrite rules
+        flush_rewrite_rules();
     }
 
     function deactivate()
@@ -36,6 +43,14 @@ class NTHPlugin
     {
         // Delete custom post type
         // Delete all the plugin data from DB
+    }
+
+    function custom_post_type()
+    {
+        register_post_type('book', [
+            'public' => true,
+            'label' => 'Books'
+        ]);
     }
 }
 

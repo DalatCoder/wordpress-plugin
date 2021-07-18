@@ -79,3 +79,8 @@
   - `uninstall`
     - Delete custom post type
     - Delete all plugin data from DB
+
+- `flush rewrite rules`:
+  - Makes WordPress be awared of that something've just happened in the DB
+  - Need to refresh, need to flush the rewrite rules
+  - In order to properly reading new stuff
