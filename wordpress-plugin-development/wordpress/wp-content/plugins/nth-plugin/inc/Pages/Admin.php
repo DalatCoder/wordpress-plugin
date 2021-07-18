@@ -22,4 +22,12 @@ class Admin
     {
         require_once PLUGIN_PATH . 'template/admin.php';
     }
+
+    function custom_post_type()
+    {
+        register_post_type('book', [
+            'public' => true,
+            'label' => 'Books'
+        ]);
+    }
 }
