@@ -39,12 +39,6 @@ class NTHPlugin
         // Flush rewrite rules
     }
 
-    function uninstall()
-    {
-        // Delete custom post type
-        // Delete all the plugin data from DB
-    }
-
     function custom_post_type()
     {
         register_post_type('book', [
@@ -63,5 +57,3 @@ register_activation_hook(__FILE__, array($instance, 'activate'));
 
 // deactivate
 register_deactivation_hook(__FILE__, array($instance, 'deactivate'));
-
-// uninstall

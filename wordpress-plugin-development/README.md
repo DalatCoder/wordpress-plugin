@@ -81,6 +81,44 @@
     - Delete all plugin data from DB
 
 - `flush rewrite rules`:
+
   - Makes WordPress be awared of that something've just happened in the DB
   - Need to refresh, need to flush the rewrite rules
   - In order to properly reading new stuff
+
+- Trigger `uninstall` hook
+
+  - Create new file named: `uninstall.php`
+  - WordPress will automatically call this file when uninstalling the plugin
+
+  - Security check:
+
+  ```php
+    defined('WP_UNINSTALL_PLUGIN') or die('Hey, what are you doing here? You silly human!');
+  ```
+
+  - Clear data
+
+  ```php
+    $books = get_post(array(
+        'post_type'    => 'books',
+        'numberposts'  => -1
+    ));
+
+    foreach ($books as $book) {
+        wp_delete_post($book->ID, false); // trashed the data || true: force delete
+    }
+  ```
+
+  - If custom post type have `custom_metabox`, `custom_taxonomies`, then using `$wpdb`.
+
+    - Dangerous
+    - Execute SQL queries
+    - Access the database via SQL
+
+    ```php
+      global $wpdb;
+      $wpdb->query("DELETE FROM wp_posts WHERE post_type = 'book'");
+      $wpdb->query("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
+      $wpdb->query("DELETE FROM wp_term_relationships WHERE object_id NOT IN (SELECT id FROM wp_posts)");
+    ```
