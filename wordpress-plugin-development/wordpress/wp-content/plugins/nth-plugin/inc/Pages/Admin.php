@@ -7,29 +7,32 @@
 namespace Inc\Pages;
 
 use \Inc\Base\BaseController;
+use \Inc\Api\SettingsApi;
 
 class Admin extends BaseController
 {
+    public $settings;
+    public function __construct()
+    {
+        $this->settings = new SettingsApi();
+    }
+
     public function register()
     {
-        add_action('admin_menu', array($this, 'add_admin_pages'));
-    }
+        $pages = [
+            [
+                'page_title' => 'NTN Plugin',
+                'menu_title' => 'NTN Plugin',
+                'capability' => 'manage_options',
+                'menu_slug' => 'nth_plugin',
+                'callback' => function () {
+                    echo '';
+                },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            ]
+        ];
 
-    function add_admin_pages()
-    {
-        add_menu_page('NTH Plugin', 'NTH Plugin', 'manage_options', 'nth_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
-    }
-
-    function admin_index()
-    {
-        require_once $this->plugin_path . 'template/admin.php';
-    }
-
-    function custom_post_type()
-    {
-        register_post_type('book', [
-            'public' => true,
-            'label' => 'Books'
-        ]);
+        $this->settings->addPages($pages)->register();
     }
 }
