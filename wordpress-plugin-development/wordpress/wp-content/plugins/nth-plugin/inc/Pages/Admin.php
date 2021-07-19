@@ -6,7 +6,9 @@
 
 namespace Inc\Pages;
 
-class Admin
+use \Inc\Base\BaseController;
+
+class Admin extends BaseController
 {
     public function register()
     {
@@ -20,7 +22,7 @@ class Admin
 
     function admin_index()
     {
-        require_once PLUGIN_PATH . 'template/admin.php';
+        require_once $this->plugin_path . 'template/admin.php';
     }
 
     function custom_post_type()
