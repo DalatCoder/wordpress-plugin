@@ -99,9 +99,21 @@ class Admin extends BaseController
         $args = [
             [
                 'option_group' => 'nth_options_group',
-                'option_name' => 'text_example',
+                'option_name' => 'nth_text_example',
                 'callback' =>   [$this->callbacks, 'nthOptionsGroup']
-            ]
+            ],
+            [
+                'option_group' => 'nth_options_group',
+                'option_name' => 'nth_first_name',
+            ],
+            [
+                'option_group' => 'nth_options_group',
+                'option_name' => 'nth_last_name',
+            ],
+            [
+                'option_group' => 'nth_options_group',
+                'option_name' => 'nth_level',
+            ],
         ];
 
         $this->settings->setSettings($args);
@@ -115,7 +127,7 @@ class Admin extends BaseController
                 'title' => 'Settings',
                 'callback' =>   [$this->callbacks, 'nthAdminSection'],
                 'page' => 'nth_plugin'
-            ]
+            ],
         ];
 
         $this->settings->setSections($args);
@@ -125,16 +137,49 @@ class Admin extends BaseController
     {
         $args = [
             [
-                'id' => 'text_example',
+                'id' => 'nth_text_example',
                 'title' => 'Text Example',
-                'callback' =>   [$this->callbacks, 'nthAdminTextExample'],
+                'callback' =>   [$this->callbacks, 'nthTextExample'],
                 'page' => 'nth_plugin',
                 'section' => 'nth_admin_index',
                 'args' => [
-                    'label_for' => 'text_example',
+                    'label_for' => 'nth_text_example',
                     'class' => 'example-class'
                 ]
-            ]
+            ],
+            [
+                'id' => 'nth_first_name',
+                'title' => 'First Name',
+                'callback' =>   [$this->callbacks, 'nthFirstName'],
+                'page' => 'nth_plugin',
+                'section' => 'nth_admin_index',
+                'args' => [
+                    'label_for' => 'nth_first_name',
+                    'class' => 'example-class'
+                ]
+            ],
+            [
+                'id' => 'nth_last_name',
+                'title' => 'Last Name',
+                'callback' =>   [$this->callbacks, 'nthLastName'],
+                'page' => 'nth_plugin',
+                'section' => 'nth_admin_index',
+                'args' => [
+                    'label_for' => 'nth_last_name',
+                    'class' => 'example-class'
+                ]
+            ],
+            [
+                'id' => 'nth_level',
+                'title' => 'Level',
+                'callback' =>   [$this->callbacks, 'nthLevel'],
+                'page' => 'nth_plugin',
+                'section' => 'nth_admin_index',
+                'args' => [
+                    'label_for' => 'nth_level',
+                    'class' => 'example-class'
+                ]
+            ],
         ];
 
         $this->settings->setFields($args);

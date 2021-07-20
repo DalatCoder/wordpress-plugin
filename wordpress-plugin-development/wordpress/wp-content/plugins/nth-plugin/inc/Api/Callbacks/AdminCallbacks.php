@@ -46,12 +46,63 @@ class AdminCallbacks extends BaseController
 
     public function nthAdminSection()
     {
-        echo 'Check this beautiful section';
+        // echo 'Check this beautiful section';
     }
 
-    public function nthAdminTextExample()
+    public function nthTextExample()
     {
-        $value = esc_attr(get_option('text_example'));
-        echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write something here">';
+        $value = esc_attr(get_option('nth_text_example'));
+        echo '
+            <input 
+                type="text" 
+                id="nth_text_example" 
+                class="regular-text" 
+                name="nth_text_example" 
+                value="' . $value . '" 
+                placeholder="Write something here"
+                autocomplete="off"
+            >';
+    }
+
+    public function nthFirstName()
+    {
+        $value = esc_attr(get_option('nth_first_name'));
+        echo '
+            <input 
+                type="text" 
+                id="nth_first_name" 
+                class="regular-text" 
+                name="nth_first_name" 
+                value="' . $value . '" 
+                placeholder="Enter your first name"
+                autocomplete="off"
+            >';
+    }
+
+    public function nthLastName()
+    {
+        $value = esc_attr(get_option('nth_last_name'));
+        echo '
+            <input 
+                type="text" 
+                id="nth_last_name" 
+                class="regular-text" 
+                name="nth_last_name" 
+                value="' . $value . '" 
+                placeholder="Enter your last name"
+                autocomplete="off"
+            >';
+    }
+
+    public function nthLevel()
+    {
+        $value = esc_attr(get_option('nth_level'));
+?>
+        <select name="nth_level" id="nth_level">
+            <option value="0" <?php echo $value == '0' ? 'selected' : ''; ?>>Junior</option>
+            <option value="1" <?php echo $value == '1' ? 'selected' : ''; ?>>Senior</option>
+            <option value="2" <?php echo $value == '2' ? 'selected' : ''; ?>>Project Manager</option>
+        </select>
+<?php
     }
 }
