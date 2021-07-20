@@ -32,6 +32,10 @@ class Admin extends BaseController
 
         $this->setSubpages();
 
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
+
         $this->settings
             ->addPages($this->pages)
             ->withSubPage('Dashboard')
@@ -88,5 +92,51 @@ class Admin extends BaseController
                 },
             ],
         ];
+    }
+
+    public function setSettings()
+    {
+        $args = [
+            [
+                'option_group' => 'nth_options_group',
+                'option_name' => 'text_example',
+                'callback' =>   [$this->callbacks, 'nthOptionsGroup']
+            ]
+        ];
+
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = [
+            [
+                'id' => 'nth_admin_index',
+                'title' => 'Settings',
+                'callback' =>   [$this->callbacks, 'nthAdminSection'],
+                'page' => 'nth_plugin'
+            ]
+        ];
+
+        $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = [
+            [
+                'id' => 'text_example',
+                'title' => 'Text Example',
+                'callback' =>   [$this->callbacks, 'nthAdminTextExample'],
+                'page' => 'nth_plugin',
+                'section' => 'nth_admin_index',
+                'args' => [
+                    'label_for' => 'text_example',
+                    'class' => 'example-class'
+                ]
+            ]
+        ];
+
+        $this->settings->setFields($args);
     }
 }
