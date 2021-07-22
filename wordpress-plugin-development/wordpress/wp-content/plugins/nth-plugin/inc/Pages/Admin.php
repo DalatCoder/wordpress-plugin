@@ -100,7 +100,7 @@ class Admin extends BaseController
             [
                 'option_group' => 'nth_options_group',
                 'option_name' => 'nth_text_example',
-                'callback' =>   [$this->callbacks, 'nthOptionsGroup']
+                'callback' => [$this->callbacks, 'nthOptionsGroup']
             ],
             [
                 'option_group' => 'nth_options_group',
@@ -125,7 +125,7 @@ class Admin extends BaseController
             [
                 'id' => 'nth_admin_index',
                 'title' => 'Settings',
-                'callback' =>   [$this->callbacks, 'nthAdminSection'],
+                'callback' => [$this->callbacks, 'nthAdminSection'],
                 'page' => 'nth_plugin'
             ],
         ];
@@ -139,7 +139,7 @@ class Admin extends BaseController
             [
                 'id' => 'nth_text_example',
                 'title' => 'Text Example',
-                'callback' =>   [$this->callbacks, 'nthTextExample'],
+                'callback' => [$this->callbacks, 'nthTextExample'],
                 'page' => 'nth_plugin',
                 'section' => 'nth_admin_index',
                 'args' => [
@@ -150,7 +150,7 @@ class Admin extends BaseController
             [
                 'id' => 'nth_first_name',
                 'title' => 'First Name',
-                'callback' =>   [$this->callbacks, 'nthFirstName'],
+                'callback' => [$this->callbacks, 'nthFirstName'],
                 'page' => 'nth_plugin',
                 'section' => 'nth_admin_index',
                 'args' => [
@@ -161,7 +161,7 @@ class Admin extends BaseController
             [
                 'id' => 'nth_last_name',
                 'title' => 'Last Name',
-                'callback' =>   [$this->callbacks, 'nthLastName'],
+                'callback' => [$this->callbacks, 'nthLastName'],
                 'page' => 'nth_plugin',
                 'section' => 'nth_admin_index',
                 'args' => [
@@ -172,7 +172,7 @@ class Admin extends BaseController
             [
                 'id' => 'nth_level',
                 'title' => 'Level',
-                'callback' =>   [$this->callbacks, 'nthLevel'],
+                'callback' => [$this->callbacks, 'nthLevel'],
                 'page' => 'nth_plugin',
                 'section' => 'nth_admin_index',
                 'args' => [

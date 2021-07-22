@@ -98,7 +98,7 @@ class AdminCallbacks extends BaseController
     {
         $value = esc_attr(get_option('nth_level'));
 ?>
-        <select name="nth_level" id="nth_level">
+        <select name="nth_level" id="nth_level" class="regular-text">
             <option value="0" <?php echo $value == '0' ? 'selected' : ''; ?>>Junior</option>
             <option value="1" <?php echo $value == '1' ? 'selected' : ''; ?>>Senior</option>
             <option value="2" <?php echo $value == '2' ? 'selected' : ''; ?>>Project Manager</option>
